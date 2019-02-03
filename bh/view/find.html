@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><!--Head--><head>
+    <meta charset="utf-8">
+    <title>北华大学</title>
+    <meta name="description" content="login page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="style/bootstrap.css" rel="stylesheet">
+    <link href="style/font-awesome.css" rel="stylesheet">
+    <!--Beyond styles-->
+    <link id="beyond-link" href="style/beyond.css" rel="stylesheet">
+    <link href="style/demo.css" rel="stylesheet">
+    <link href="style/animate.css" rel="stylesheet">
+
+
+</head>
+<!--Head Ends-->
+<!--Body-->
+
+<body>
+    <div class="login-container animated fadeInDown">
+        <form action="" method="post">
+            <div class="loginbox bg-white">
+                <div class="loginbox-title">找回 密码</div>
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="输入修改密码工号" name="username" id="username" type="text">
+                </div>
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="请输入新的密码" name="password" id="password" type="password">
+                </div>
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="请重复确认密码" name="password" id="password" type="password">
+                </div>
+                <div class="loginbox-submit">
+                    <input type="button" class="btn btn-primary btn-block" value="修改" id="onsubmit">
+                </div>
+            </div>
+                <div class="logobox">
+                    <p class="text-center">北华大学</p>
+                </div>
+        </form>
+    </div>
+   <!--Basic Scripts-->
+    <script src="style/jquery.js"></script>
+    <script src="style/bootstrap.js"></script>
+    <script src="style/jquery_002.js"></script>
+    <!--Beyond Scripts-->
+    <script src="style/beyond.js"></script>
+    <script type="text/javascript">
+        document.getElementById('onsubmit').onclick=function(){
+              var username=document.getElementById('username').value;
+              var password=document.getElementById('password').value;
+              if (username=='' || password=='') {
+                alert("用户名和密码不能为空")
+              }else{
+                post_json(username,password);
+              }
+            }
+
+        
+    function post_json(username,password) {
+        //Javascript以ajax发送数据JSON数据，PHP接收JSON
+        //前端
+        var arr = {
+            "username": username,
+            "password": password
+        };
+        var json = JSON.stringify(arr);//使用JSON将对象转换成JSON格式数据
+        var xhr = new XMLHttpRequest;
+        xhr.open('post', '../admin/admin.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("user=" + json);//  Content-Type设置成application/x-www-form-urlencoded 的情况下，请求主体可以用key1=value1&key2=value2的形式发送数据
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304))  //响应完成并且响应码为200或304
+                if(xhr.responseText){
+                   var result=xhr.responseText;
+                }
+                if(result==1){
+                        alert('用户名不存在');
+                }else if(result==2){
+                        alert("密码错误");
+                }else if(result==0){
+                        window.location.href = 'http://www.sogou.com';//登录成功跳转
+                }
+
+        }
+    }
+        </script>
+
+</body><!--Body Ends--></html>

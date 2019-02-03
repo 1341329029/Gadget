@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,user-scalable=no" name="viewport">
+<title>玉葡萄矿池</title>
+<link rel="icon" href="favicon.ico" >
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link href="style/ypt_style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+
+<body class="bjj">
+
+		<!-- 二维码 -->
+		<script type="text/javascript" src="js/jquery.qrcode.js" ></script>
+        <script type="text/javascript" src="js/qrcode.js" ></script> 
+        <script type="text/javascript" src="js/utf.js" ></script>	
+        <script type="text/javascript" src="js/jquery-confirm.min.js" ></script>	
+        <script type="text/javascript" src="js/clipboard.min.js" ></script>	
+        <script type="text/javascript" src="canvas_x/lib/canvas_x.js" ></script>	
+		<script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
+		<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+<div class="ypt_login2">
+<div class="w1170">
+	<div class="list fl">
+		<ul>
+			<li><a href="#"><i><img src="images/ico4.png" width="30" height="30" alt=""/></i>我的帐户</a></li>
+			<li><a href="#"><i><img src="images/ico5.png" width="30" height="30" alt=""/></i>推荐奖励</a></li>
+			<li><a href="#"><i><img src="images/ico9.png" width="30" height="30" alt=""/></i>充值提现</a></li>
+			<li><a  class="listhover" href="#"><i><img src="images/ico10.png" width="30" height="30" alt=""/></i>你的专属海报</a></li>
+		</ul>
+	</div>
+	<div class="loginAa8 fr">
+		<div  class="loginBin">
+		<div class="loginBin_bi2">
+		<h2>你的专属海报</h2>
+		<div class="imgbox">
+			<div class="imgbox">
+			
+				<div class="card">
+				<div id="qrcodeCanvas"></div>
+					<!--<img id="testimg" src="images/zhizhu1.jpg"/>-->
+					<img id="test" style=""/>
+					<a href="#" class="down_btn_a" id="save" onclick="downloadIamge('canvas', 'niha','test')">点击下载</a>
+				</div>
+				
+				<div class="card">
+				<div id="qrcodeCanvas2"></div>
+					<!--<img id="testimg" src="images/zhizhu1.jpg"/>-->
+					<img id="test1"/>
+					<a href="#" class="down_btn_a" id="save" onclick="downloadIamge('canvas', 'niha','test1')">点击下载</a>
+				</div>
+	
+			</div>
+			
+		</div>
+	
+</div>
+		<script> 
+//		     jQuery('#qrcodeCanvas,#qrcodeCanvas2').qrcode({
+//		     	 render    : "canvas",
+//		         text    : "http://www.baidu.com",
+//		         width : "100",               //二维码的宽度
+//               height : "100",              //二维码的高度
+//               background : "#ffffff",       //二维码的后景色
+//               foreground : "#4e4d4d",        //二维码的前景色
+//		     }); 
+			canvas_x.makeImage({
+			  type: 'url',
+			  parts: [
+			    {
+			      type: 'image',
+			      url: 'images/zhizhu.jpg',
+			//    ./assets/mMain1.png
+			      width: 300,
+			      height: 300
+			    },
+			    
+			    {
+			      type: 'qrcode',
+			      text: 'https://github.com/sayll/rollup',
+			      // logo: 'https://avatars3.githubusercontent.com/u/18632641?s=40&v=4',
+			      x: -20,
+			      y: -1,
+			      width: 80,
+			      height: 50,
+			      padding: 2,
+			      background: '#fff',
+			      level: 3
+			    },
+			    
+			    ],
+				  width: 300,
+				  height: 300
+				}, (err, data) => {
+				  document.getElementById('test').src = data;
+				  document.getElementById('test1').src = data
+				})
+			
+			
+			
+			 
+			function downloadIamge(selector, name,idname) {
+			    // 通过选择器获取img元素
+			   var img = document.getElementById(idname);
+			   // var img = document.querySelector("img");
+//			    var img1 = document.querySelector("#text1");
+			    // 将图片的src属性作为URL地址
+			    var url = img.src
+			    var a = document.createElement('a')
+//			    a.innerHTML="点击下载"
+//			    a.style="background:blue;"
+			    var event = new MouseEvent('click')
+			    
+			    a.download = name || '下载图片名称'
+			    a.href = url
+			    
+			    a.dispatchEvent(event)
+			}
+			
+			// 调用方式
+			// 参数一： 选择器，代表canvas
+			// 参数二： 图片名称，可选
+			// downloadIamge('canvas', '图片名称')
+		 </script>
+		 
+
+		</div>
+		
+	</div>
+<div class="clear"></div>
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>

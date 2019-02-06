@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>点名系统</title>
+</head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script src="js/commit.js" type="text/javascript" charset="utf-8"></script>
+
+<body>
+    <div class="main">
+        <div class="content_left">
+            <div id="bg">
+                <table id="tb">
+                    <tr>
+                        <td>杨赫</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                    <tr>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                    <tr>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                    <tr>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                    <tr>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                    <tr>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                        <td>王美丽</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="kz">
+                <input type="button" value="点名" id="btn">
+            </div>
+        </div>
+        <div class="content_right">
+            <p>点名系统</p>
+        </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript">
+var list = my$('bg').getElementsByTagName('td');
+function getColor() {
+    var sum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+    var str = "#"
+    for (var i = 0; i < 6; i++) {
+        var num = Math.floor(Math.random() * 16);
+        str += sum[num];
+    }
+    return str;
+}
+function refresh() {
+    while (1) {
+        var num = Math.floor(Math.random() * list.length);
+        for (var i = 0; i < list.length; i++) {
+            list[i].style.backgroundColor = "white";
+        }
+        list[num].style.backgroundColor = getColor();
+        break;
+    }
+}
+var s = 0;
+my$('btn').onclick = function() {
+    if (s) {
+        window.clearInterval(s);
+        s = 0;
+    } else {
+       s = setInterval('refresh()', 100);
+    }
+};
+</script>
+
+</html>

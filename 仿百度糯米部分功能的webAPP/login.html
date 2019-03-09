@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<!--background-image: url(img/BG_login.png);background-repeat: no-repeat;-->
+
+	<body style=" background-color: #EFE8CB;">
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<span class="mui-icon mui-icon-closeempty" style="font-size: 45px;color: red;"></span>
+		<span style="float: right;font-size: 20px; margin-top: 10px;margin-right: 10px;color: red;">帮助</span>
+		<p ><img src="img/o1.png"/ width="250"style="margin-left:17%; margin-top:5%"></p>
+			<div class="mui-content-padded" style="margin-top:70px; border-radius: 5px;">
+				<form class="mui-input-group">
+					<div class="mui-input-row" >
+						<label >账号：</label>
+						<input type="text" id="username" class="mui-input-clear" placeholder="请输入账号...">
+					</div>
+					<div class="mui-input-row">
+						<label>密码：</label>
+						<input type="password" id="password" class="mui-input-password" onclick="return false" placeholder="请输入密码...">
+					</div>
+				</form>
+				<div class="mui-button-row">
+					<button class="mui-btn mui-btn-block mui-btn-negative" id="btn-login" onclick="return false;">登录</button>&nbsp;&nbsp;
+				   <button style="margin-top: -20px;" class="mui-btn mui-btn-block " id="btn-register" onclick="return false;">注册</button>
+				</div>
+			</div>
+		<script type="text/javascript">
+			document.getElementById("btn-login").addEventListener("tap", function() {
+				var username = document.getElementById("username").value;
+				var password = document.getElementById("password").value;
+				var uname = localStorage.getItem("username");
+				var pword = localStorage.getItem("password");
+				mui.toast(uname + "," + pword);
+				if(username == uname && password == pword) {
+					mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd', {
+						data: {
+							uid: localStorage.getItem("uid"),
+							cmd: 0
+						},
+						success: function(data) {
+							var json = eval("(" + data + ")");
+							if(json.code == 0) {
+								//登录成功
+								//跳转到主界面
+								mui.openWindow({
+									url: "main.html"
+								});
+							} else {
+								mui.toast("登录失败：服务器错误");
+							}
+						}
+					});
+				} else {
+					mui.toast("登录失败：服务器错误");
+				}
+			});
+			document.getElementById("btn-register").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "register.html"
+				});
+			});
+		</script>
+	</body>
+
+</html>

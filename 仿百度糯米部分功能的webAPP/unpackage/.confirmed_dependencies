@@ -1,0 +1,238 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"img/o1.png",
+			"img/o2.bmp"
+		],
+		"refer": [
+			"login.html",
+			"register.html"
+		]
+	},
+	"register.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"img/o1.png"
+		],
+		"refer": [
+			"main.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"img/BG_login.png",
+			"img/BG_1.png",
+			"img/BG_2.png",
+			"img/o1.png"
+		],
+		"refer": [
+			"main.html",
+			"register.html"
+		]
+	},
+	"main.html": {
+		"resources": [
+			"movie.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"img/2.jpg",
+			"img/03.jpg",
+			"img/02.jpg",
+			"img/04.jpg",
+			"img/1.jpg",
+			"css/iconfont.css",
+			"img/4.jpg",
+			"img/01.jpg",
+			"img/3.jpg",
+			"img/5.jpg",
+			"img/02.png",
+			"img/03.png",
+			"img/04.png",
+			"movie_now.html",
+			"concert.html",
+			"opera.html",
+			"movie_now_about.html",
+			"opera_about.html",
+			"concert_about.html"
+		],
+		"refer": [
+			"movie.html",
+			"movie_now.html",
+			"movie_will.html",
+			"concert.html",
+			"opera.html",
+			"movie_now_about.html",
+			"opera_about.html",
+			"concert_about.html"
+		]
+	},
+	"movie.html": {
+		"resources": [
+			"main.html",
+			"mdetail.html"
+		],
+		"refer": [
+			"main.html",
+			"mdetail.html"
+		]
+	},
+	"mdetail.html": {
+		"resources": [
+			"movie.html",
+			"movie_now.html",
+			"movie_will.html"
+		],
+		"refer": [
+			"movie.html",
+			"movie_now.html",
+			"movie_will.html"
+		]
+	},
+	"movie_will.html": {
+		"refer": [
+			"movie_now.html",
+			"main.html",
+			"mdetail.html",
+			"movie_now_about.html",
+			"movie_will_about.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"main.html",
+			"movie_now.html",
+			"img/movie_will/80001.jpg",
+			"img/movie_will/80003.jpg",
+			"img/movie_will/80004.jpg",
+			"img/movie_will/80002.jpg",
+			"mdetail.html",
+			"movie_now_about.html",
+			"movie_will_about.html"
+		]
+	},
+	"movie_now.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"main.html",
+			"movie_will.html",
+			"mdetail.html",
+			"img/movie_now/HP2.jpg",
+			"img/movie_now/10001.jpg",
+			"img/movie_now/10003.jpg",
+			"img/movie_now/10004.jpg",
+			"img/movie_now/10002.jpg",
+			"about_ref.html",
+			"movie_about.html",
+			"movie_now_about.html",
+			"img/bgi_m.jpg"
+		],
+		"refer": [
+			"main.html",
+			"movie_will.html",
+			"mdetail.html",
+			"about_ref.html",
+			"movie_about.html",
+			"movie_now_about.html"
+		]
+	},
+	"about_ref.html": {
+		"resources": [
+			"img/timg.jpg",
+			"img/11.jpg",
+			"movie_now.html"
+		],
+		"refer": [
+			"movie_now.html"
+		]
+	},
+	"movie_about.html": {
+		"resources": [
+			"img/timg.jpg",
+			"movie_now.html"
+		],
+		"refer": [
+			"movie_now.html"
+		]
+	},
+	"movie_now_about.html": {
+		"resources": [
+			"img/timg.jpg",
+			"movie_will.html",
+			"img/movie_now/10001.jpg",
+			"movie_now.html",
+			"main.html"
+		],
+		"refer": [
+			"movie_will.html",
+			"movie_now.html",
+			"main.html"
+		]
+	},
+	"movie_will_about.html": {
+		"resources": [
+			"movie_will.html",
+			"img/timg.jpg"
+		],
+		"refer": [
+			"movie_will.html"
+		]
+	},
+	"concert.html": {
+		"resources": [
+			"main.html",
+			"img/bgi_c.jpg",
+			"concert_about.html"
+		],
+		"refer": [
+			"main.html",
+			"concert_about.html"
+		]
+	},
+	"opera.html": {
+		"resources": [
+			"main.html",
+			"img/bgi_o.jpg",
+			"opera_about.html",
+			"img/p1.jpg"
+		],
+		"refer": [
+			"main.html",
+			"opera_about.html"
+		]
+	},
+	"opera_about.html": {
+		"resources": [
+			"img/timg_o.jpg",
+			"opera.html",
+			"img/p1.jpg",
+			"main.html"
+		],
+		"refer": [
+			"opera.html",
+			"main.html"
+		]
+	},
+	"concert_about.html": {
+		"resources": [
+			"concert.html",
+			"img/timg_m.jpg",
+			"img/p2.jpg",
+			"main.html"
+		],
+		"refer": [
+			"concert.html",
+			"main.html"
+		]
+	}
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<ul class="mui-table-view" id="m">
+		</ul>
+		<script>
+			//1.去服务器获取数据
+			mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd', {
+				data: {
+					cmd: 101
+				},
+				success: function(data) {
+					var json = eval("(" + data + ")");
+					if(json.code == 0) {
+						//登录成功
+						var list = json.list;
+
+						var ul = document.getElementById("m");
+						for(var i = 0; i < list.length; i++) {
+							var li = document.createElement("li");
+							var a = document.createElement("a");
+							var img = document.createElement("img");
+							var div = document.createElement("div");
+							var p_type = document.createElement("p");
+							var p_time = document.createElement("p");
+							var p_player = document.createElement("p");
+							p_type.setAttribute("class", "mui-ellipsis");
+							p_time.setAttribute("class", "mui-ellipsis");
+							p_player.setAttribute("class", "mui-ellipsis");
+							div.setAttribute("class", "mui-media-body");
+							img.setAttribute("class", "mui-media-object mui-pull-right");
+							img.setAttribute("src", "#");
+							a.setAttribute("href", "mdetail.html?mid=" + list[i].mid);
+							li.setAttribute("class", "mui-table-view-cell mui-media");
+
+							p_type.innerHTML = list[i].type;
+							p_time.innerHTML = list[i].time;
+							p_player.innerHTML = list[i].player;
+
+							div.innerHTML = list[i].name;
+							div.appendChild(p_type);
+							div.appendChild(p_time);
+							div.appendChild(p_player);
+
+							a.appendChild(img);
+							a.appendChild(div);
+							li.appendChild(a);
+							ul.appendChild(li);
+						}
+					} else {
+						mui.toast("电影获取失败");
+					}
+				}
+			});
+			//2.将得到的数据放入到ui中
+		</script>
+	</body>
+
+</html>

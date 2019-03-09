@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/iconfont.css" rel="stylesheet" />
+		<style>
+			.main {
+				width: 100%;
+				height: 330px;
+				background: url(img/timg.jpg);
+				background-size: 200%;
+			}
+			
+			.main_left {
+				width: 55%;
+				height: 280px;
+				float: left;
+			}
+			
+			.main_right {
+				width: 45%;
+				height: 280px;
+				float: left;
+				margin-top: 75px;
+
+			}
+			
+			.pp {
+				height: 3%;
+				font-size: 15px;
+			}
+			
+			.main_bottom {
+				width: 100%;
+				height: 80px;
+				margin-top: -80px;
+				float: left;
+			}
+			
+			.center {
+				width: 100%;
+				height: 275px;
+			}
+			
+			.main_bottom_bottom {
+				width: 100%;
+				height: 60px;
+			}
+			
+			.ioon {
+				width: 40%;
+				height: 45px;
+				background-color: rgba(255, 255, 255, 0.3);
+				float: left;
+				margin-left: 25px;
+				border-radius: 5px;
+			}
+			
+			.ioon span {
+				margin-left: 20px;
+				margin-top: 10px;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span style="float: left; margin-top:12px;margin-left: 10px;">上一个页面</span>
+			<span class="mui-icon iconfont icon-fenxiang-copy" style="float: right;margin-right: 5px;"></span>
+		</header>
+		<div class="main">
+			<div class="main_left" id="m_detail_img">
+				<!--<img src="img/11.jpg" width="120" style="margin-top: 40%;margin-left: 20%;">-->
+			</div>
+			<div class="main_right" id="m_info">
+			</div>
+			<div class="main_bottom">
+				<div class="main_bottom_bottom">
+					<div class="ioon"><span class="mui-icon mui-icon-starhalf"></span><span>想看</span></div>
+					<div class="ioon"><span class="mui-icon mui-icon-pengyouquan"></span><span>看过</span></div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="center">
+			<p style="color: black;width: 90%;margin: auto;margin-top:10px;font-size: 16px;line-height: 2;" id="m_intro">
+				<span>电影介绍</span>
+			</p>
+		</div>
+
+		<button class="mui-btn mui-btn-block mui-btn-negative" id="btn-login" onclick="return false;">特惠购票</button>
+		<script type="text/javascript">
+			var params = window.location.search;
+			var mid = params.split("=")[1];
+			mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd', {
+				data: {
+					cmd: 802,
+					mid: mid
+				},
+				success: function(data) {
+					var json = eval("(" + data + ")");
+					if(json.code == 0) {
+						console.log(json.desc);
+
+						//插入后台的相应数据-div-main_left
+						var main_left = document.getElementById("m_detail_img");
+						var img = document.createElement("img");
+						img.setAttribute("style", "margin-top: 40%;margin-left: 20%;width: 130px;");
+						img.setAttribute("src", "img/movie_will/" + json.imagee + ".jpg");
+						main_left.appendChild(img);
+
+						//插入后台数据-div-main_right
+						var main_right = document.getElementById("m_info");
+						var p_name = document.createElement("p");
+						var p_player = document.createElement("p");
+						var p_mlong = document.createElement("p");
+						var p_mtime = document.createElement("p");
+						var p_type = document.createElement("p");
+						
+						p_name.setAttribute("style", "font-size: 16px;color: white;");
+						p_name.innerHTML=json.name;
+						p_player.setAttribute("class","pp");
+						p_player.innerHTML=json.player;
+						p_mlong.setAttribute("class","pp");
+						p_mlong.innerHTML=json.tlong;
+						p_mtime.setAttribute("class","pp");
+						p_mtime.innerHTML=json.stime;
+						p_type.setAttribute("class","pp");
+						p_type.innerHTML=json.type
+						main_right.appendChild(p_name);
+						main_right.appendChild(p_player);
+						main_right.appendChild(p_mlong);
+						main_right.appendChild(p_mtime);
+						main_right.appendChild(p_type);
+						
+						//插入后台数据-div-center
+						var main_center=document.getElementById("m_intro");
+						var mIntro = document.createElement("span");
+						mIntro.innerHTML =json.desc;
+						main_center.appendChild(mIntro);
+					} else {
+						mui.toast("电影详情加载失败");
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

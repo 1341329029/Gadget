@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	<span class="mui-icon mui-icon-closeempty" style="font-size: 45px;color: red;"></span>
+		<span style="float: right;font-size: 20px; margin-top: 10px;margin-right: 10px;color: red;">帮助</span>
+		<p ><img src="img/o1.png"/ width="250"style="margin-left:17%; margin-top:5%"></p>
+		<div class="mui-content-padded" style="margin-top:70px; border-radius: 5px;">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号：</label>
+					<input type="text" id="username" class="mui-input-clear" placeholder="请输入账号...">
+				</div>
+				<div class="mui-input-row">
+					<label>密码：</label>
+					<input type="password" id="password" class="mui-input-password" onclick="return false" placeholder="请输入密码...">
+				</div>
+				<div class="mui-input-row">
+					<label>确认密码：</label>
+					<input type="password" id="repassword" class="mui-input-password" onclick="return false" placeholder="确认密码...">
+				</div>
+	
+				<div class="mui-button-row">
+					<button class="mui-btn mui-btn-positive mui-btn-outlined" id="btn-register" onclick="return false;">注册</button>&nbsp;&nbsp;
+					<button class="mui-btn mui-btn-negative" onclick="return false;">取消</button>
+				</div>
+			</form>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		document.getElementById("btn-register").addEventListener("tap", function() {
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+			var repassword=document.getElementById("repassword").value;
+			mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd',{
+				data:{
+					name:username,
+					password:password,
+					cmd:1
+				},
+				success:function(data){
+					var json = eval("("+data+")");
+					if(json.code==0){
+						localStorage.setItem("username",username);
+						localStorage.setItem("password",password);
+						localStorage.setItem("uid",json.uid);
+						mui.openWindow({
+							url:"main.html"
+						});
+					}else{
+						mui.toast("注册失败");
+					}
+				}
+			});
+		});
+	</script>
+
+</html>

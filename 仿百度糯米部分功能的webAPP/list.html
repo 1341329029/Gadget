@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class=" mui-icon  mui-pull-left" style="color:black;font-size: 20px;">北京</a>
+			<span class="mui-icon mui-icon-arrowdown" style="float: left;"></span>
+			<a href="vtSearch.html">
+				<div class="mui-input-row mui-search" style="width: 260px;float: left;">
+					<input type="search" class="mui-input-clear whiteBg" placeholder="搜你想要的" readonly="readonly">
+				</div>
+				<span class="mui-icon mui-icon-plusempty" style="float: right;margin-top:-3px;font-size: 26px;color: black;"></span>
+			</a>
+		</header>
+		<ul class="mui-table-view" id="m">	
+		</ul>
+
+		<div class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">Color of SIP CBD</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">静静看这世界</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-slider-item">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">美食节！开节！</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">单品！</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-slider-item">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">Color of SIP CBD</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">美食节！开节！</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">单品！</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="images/a.jpg">
+								<div class="mui-media-body">单品！</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mui-slider-indicator" style="position: static;background-color: #fff;">
+				<span class="mui-action mui-action-previous mui-icon mui-icon-back"></span>
+				<div class="mui-number">
+					<span>1</span> / 2
+				</div>
+				<span class="mui-action mui-action-next mui-icon mui-icon-forward"></span>
+			</div>
+		</div>
+
+		<script>
+		var arr = ['飞驰人生','疯狂哇行人','流浪地球','爱的抱抱','你好么','我不还'];
+		var list = ['幸福就是可以一起睡觉','幸福就是可以一起睡觉','幸福就是可以一起睡觉','幸福就是可以一起睡觉','幸福就是可以一起睡觉aaaa','幸福就是可以一起睡觉aaaa']
+		var ul = document.getElementById('m');
+		for(var i=0;i<6;i++){
+			var li =document.createElement("li");
+			var a =document.createElement("a");
+			var img = document.createElement("img");
+			var div =document.createElement("div");
+			var p =document.createElement("p");
+			li.setAttribute("class","mui-table-view-cell mui-media");
+			img.setAttribute("class","mui-media-object mui-pull-left");
+			div.setAttribute("class","mui-media-body");
+			p.setAttribute("class","mui-ellipsis");
+			img.src="images/a.jpg";
+			a.href="about.html";
+			div.innerText=arr[i];
+			p.innerText=list[i];
+			li.appendChild(a);
+			a.appendChild(img);
+			a.appendChild(div);
+			div.appendChild(p);
+			ul.appendChild(li);
+		}
+		</script>
+	</body>
+	
+</html>

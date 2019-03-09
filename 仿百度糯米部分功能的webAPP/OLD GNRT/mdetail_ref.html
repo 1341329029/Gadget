@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	<script>
+		var params = 	window.location.search;
+		var mid=params.split("=")[1];
+		mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd',{
+			
+			data:{
+				cmd:102,
+				mid:mid
+			},
+			success:function(data){
+//				alert(data);
+				var json=eval("("+data+")");
+				if(json.code==0){
+					console.log(json.desc);
+					alert(json.mid);
+				}else{
+					mui.toast("电影详情加载失败");
+				}
+			}
+		});
+	</script>
+	
+	</body>
+
+</html>

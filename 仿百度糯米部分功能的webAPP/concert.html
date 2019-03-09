@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+
+		<header class="mui-bar mui-bar-nav" style=" background-image: url(img/bgi_c.jpg);background-size: 100% 100%;">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="main.html"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title">音乐会</h1>
+		</header>
+		<div>
+			<div style="height:35px;"></div>
+			</p>
+			<p>
+		</div>
+
+		<ul class="mui-table-view" id="m">
+		</ul>
+		<script>
+			//1.去服务器获取数据
+			mui.ajax('http://10.0.13.135:8080/leisurelife/dealcmd', {
+				data: {
+					cmd: 201
+				},
+				success: function(data) {
+					var json = eval("(" + data + ")");
+					if(json.code == 0) {
+						//登录成功
+						var list = json.list;
+
+						var ul = document.getElementById("m");
+
+						for(var i = 0; i < list.length; i++) {
+							var li = document.createElement("li");
+							var a = document.createElement("a");
+							var img = document.createElement("img");
+							var div = document.createElement("div");
+
+							var p_time = document.createElement("p");
+							var p_address = document.createElement("p");
+
+							p_time.setAttribute("class", "mui-ellipsis");
+							p_address.setAttribute("class", "mui-ellipsis");
+							div.setAttribute("class", "mui-media-body");
+							img.setAttribute("class", "mui-media-object mui-pull-left");
+							img.setAttribute("src", "img/p2.jpg");
+							a.setAttribute("href", "concert_about.html?cid=" + list[i].cid);
+							li.setAttribute("class", "mui-table-view-cell mui-media");
+
+							p_time.innerHTML = list[i].time;
+							p_address.innerHTML = list[i].addr;
+
+							div.innerHTML = list[i].name;
+
+							div.appendChild(p_time);
+							div.appendChild(p_address);
+
+							a.appendChild(img);
+							a.appendChild(div);
+							li.appendChild(a);
+							ul.appendChild(li);
+						}
+					} else {
+						mui.toast("演唱会获取失败");
+					}
+				}
+			});
+			//2.将得到的数据放入到ui中
+		</script>
+	</body>
+
+</html>

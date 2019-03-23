@@ -1,10 +1,10 @@
 <?php
 include("pdo.php");
+include("check.php");
 header("content-type:text/html;charset=utf-8");  
-$appid = "wx03c2058c2cfe8fd8";  
-$secret = "80838b0241ef6d11dacfa887fb1cb13b";  
+$appid = "wxf88d880d23e89087";  
+$secret = "1cb718bbe5eb418e96b73403e75c0974";  
 $code = $_GET["code"];
- 
 //第一步:取全局access_token
 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
 $token = getJson($url);
@@ -18,26 +18,7 @@ $access_token = $token["access_token"];
 $openid = $oauth2['openid'];  
 $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
 $userinfo = getJson($get_user_info_url);
- 
-//打印用户信息
-  function check()
-  {
-    print_r($userinfo);
-    $username=$_SESSION['username'];
-    // $username = "admin";
-    $test = new DBPDO;
-    $sql = "insert into bn_jsjkxjs oppenid values where username ='$username'";
-    $rs = $test->insert($sql);
-    return $rs
-  }
-  	if(check()){
-       header("") 
-     }else{
-      header("../view/login.html")
-     }
-   
- 
-function getJson($url){
+ function getJson($url){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
@@ -47,4 +28,46 @@ function getJson($url){
     curl_close($ch);
     return json_decode($output, true);
 }
+
+//打印用户信息
+  function check($userinfo)
+  {
+    session_start();
+    $username=$_SESSION['username'];
+    // $username="admin";
+    $test = new DBPDO;
+    $ade=new Findwhere();
+    $table=$ade->First($username);
+    if ($table) {
+      $sql = "select * from $table where username ='$username'";
+      $rse = $test->select($sql);
+      $oppenid=$userinfo['openid'];
+      if (!$rse[0]['oppenid']) {
+          $sql2 = "update $table set oppenid ='$oppenid' where username ='$username'";
+          $rs = $test->update($sql2);
+          if ($rs) {
+            return 1;
+          }
+          else{
+            return 3;
+          }
+        }else{
+          return 2;
+        }
+    }else{
+      return 4;
+    }
+
+  }
+if(check($userinfo)==1){
+  header('location:../view/yes.html');
+}else if(check($userinfo)==2){
+  header('location:../view/sorry.html');
+}else if(check($userinfo)==3){
+  header('location:../view/login.html');
+}else{
+  header('location:../view/sorry2.html');
+}
+
+
 ?>

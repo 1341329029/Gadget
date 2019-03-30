@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX 动态表格渲染</title>
+</head>
+
+<body>
+    <table id="demo"></table>
+    <!--
+    script 标签的特点是
+    1. innerHTML 永远不会显示在界面上
+    2. 如果 type 不等于 text/javascript 的话，内部的内容不会作为 JavaScript 执行
+  -->
+    <script id="tmpl" type="text/x-art-template">
+        {{each comments}}
+    <!-- each 内部 $value 拿到的是当前被遍历的那个元素 -->
+    <tr>
+      <td>{{$value.author}}</td>
+      <td>{{$value.content}}</td>
+      <td>{{$value.created}}</td>
+    </tr>
+    {{/each}}
+  </script>
+    <script src="template-web.js"></script>
+    <script>
+    function ajax(method, url, params, done) {
+        method = method.toUpperCase()
+        var xhr = new XMLHttpRequest()
+        if (typeof params === 'object') {
+            var tempArr = []
+            for (var key in params) {
+                var value = params[key]
+                tempArr.push(key + '=' + value)
+            }
+            params = tempArr.join('&')
+        }
+        if (method === 'GET') {
+            url += '?' + params
+        }
+        xhr.open(method, url, false)
+        var data = null
+        if (method === 'POST') {
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            data = params
+        }
+        xhr.onreadystatechange = function() {
+            if (this.readyState !== 4) return
+            done(this.responseText)
+        }
+        xhr.send(data)
+    }
+
+
+
+    //调用
+    var onDone = function(res) {
+        console.log(res);
+        var rese = JSON.parse(res)
+        var context = { comments: rese.data }
+        var html = template('tmpl', context)
+        console.log(html)
+        document.getElementById('demo').innerHTML = html
+    }
+
+    ajax('get', 'test.php', {}, onDone)
+    </script>
+</body>
+
+</html>

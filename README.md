@@ -61,7 +61,6 @@ js的基础知识，运用了Math.random()随机数和setInterval周期定时器
 
 通过hublider编译器和雷电模拟器配合来写此项目，运用了mui框架和JavaScript的AJAX的技术来进行的一款webapp,主要功能有对猫眼电影的部分功能，还有部分功能未实现尚要改进。
 
-
 ## [10.ajax](ajax)
 
 ### AJAX 动态表格渲染--使用template模版引擎

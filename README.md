@@ -71,5 +71,5 @@ js的基础知识，运用了Math.random()随机数和setInterval周期定时器
 
 ### 通过调用JQuery中AJAX实现局部刷新
 
-通过调用JQuery中AJAX中**.load（）**方法来实现对个人主页的部分模块的局部刷新，并运用了**.ajaxStart()**和**.ajaxStop()**方法和nprogress的加载进度条来实现读取ajax 请求发生和结束。
+通过调用JQuery中AJAX中 **.load()** 方法来实现对个人主页的部分模块的局部刷新，并运用了 **.ajaxStart()** 和 **.ajaxStop()** 方法和nprogress的加载进度条来实现读取ajax 请求发生和结束。
 
